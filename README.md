@@ -25,4 +25,4 @@ Bookings are initially Pending. The API rejects a request when its time range ov
 
 Google OAuth works after configuring its Google client ID, client secret, and callback URL in `.env`. Host booking confirmation, image upload, payment processing, invoice PDFs, review moderation, and production deployment are not configured. The client currently uses the API for account registration, login, logout, and session restoration; studio, booking, and wishlist screens still use browser-local demo data.
 
-For Google OAuth, create a Web application OAuth client in Google Cloud Console and add `http://localhost:4000/api/auth/google/callback` as an authorized redirect URI for local development. Copy its client ID and secret into `.env`. For production, add the deployed API callback URI as well.
+For Google OAuth, create a Web application OAuth client in Google Cloud Console and add `https://spacestudio-clint.vercel.app/api/auth/google/callback` as an authorized redirect URI for local development. Copy its client ID and secret into `.env`. For production, add the deployed API callback URI as well.
