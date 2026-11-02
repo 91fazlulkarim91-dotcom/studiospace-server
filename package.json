@@ -1,3 +1,4 @@
+
 {
   "name": "studiospace-server",
   "version": "1.0.0",
@@ -20,10 +21,5 @@
     "helmet": "^8.3.0",
     "jsonwebtoken": "^9.0.3",
     "mongodb": "^6.21.0"
-  },
-  "description": "Express and MongoDB API for StudioSpace. It provides password-based registration and login, JWT session cookies, studio CRUD, booking requests with confirmed-slot overlap checks, and a favorites collection.",
-  "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  }
 }
