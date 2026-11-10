@@ -99,32 +99,28 @@ await Promise.all([
 
 app.use(helmet());
 
+const allowedOrigins = new Set(
+  process.env.CLIENT_ORIGIN
+    .split(",")
+    .map((origin) => origin.trim().replace(/\/$/, ""))
+    .filter(Boolean)
+);
+
 app.use(
   cors({
     origin(origin, callback) {
-      // Allow requests without Origin (e.g. health checks)
-      if (!origin || clientOrigins.includes(origin.replace(/\/$/, ""))) {
+      if (!origin || allowedOrigins.has(origin.replace(/\/$/, ""))) {
         return callback(null, true);
       }
 
       return callback(new Error("Not allowed by CORS"));
     },
     credentials: true,
-  }),
+  })
 );
 
 app.use(express.json({ limit: "1mb" }));
 app.use(cookieParser());
-
-app.use(
-  "/api/auth",
-  rateLimit({
-    windowMs: 15 * 60 * 1000,
-    limit: 30,
-    standardHeaders: "draft-8",
-    legacyHeaders: false,
-  }),
-);
 
 // ========================================
 // 6. Helper Functions
