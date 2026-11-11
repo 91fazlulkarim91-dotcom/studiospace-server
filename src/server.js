@@ -29,12 +29,11 @@ const PORT = Number(process.env.PORT) || 4000;
 const NODE_ENV = process.env.NODE_ENV || "development";
 const isProduction = NODE_ENV === "production";
 
-const clientOrigins = process.env.CLIENT_ORIGIN
-  .split(",")
-  .map((origin) => origin.trim().replace(/\/$/, ""))
-  .filter(Boolean);
+const normalizeOrigin = (origin) =>
+  origin.trim().replace(/\/$/, "");
 
-const clientOrigin = clientOrigins[0];
+// OAuth redirect-এর জন্য একটি নির্দিষ্ট frontend URL
+const clientOrigin = normalizeOrigin(process.env.CLIENT_ORIGIN);
 
 // ========================================
 // 2. Express App & MongoDB
